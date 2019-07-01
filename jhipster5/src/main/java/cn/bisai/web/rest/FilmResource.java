@@ -251,8 +251,8 @@ public class FilmResource {
 
     }
 
-    @RequestMapping("/skiptofront/{id}")
-    public void skipToFront(@PathVariable Long id,@RequestParam Long forward) {
+    @RequestMapping("/changeProgress/{id}")
+    public void changeProgress(@PathVariable Long id,@RequestParam Long change) {
         Long fid = film.getId();
         if (!id.equals(fid)) {
             Optional<Film> opt = filmRepository.findById(id);
@@ -261,12 +261,12 @@ public class FilmResource {
                 return;
             }
             Film f = opt.get();
-            f.setCurtime(f.getCurtime() + forward);
+            f.setCurtime(f.getCurtime() + change);
             log.info(f.getName() + "快进到" + f.getCurtime());
             filmRepository.updateCurtime(f.getId(), f.getCurtime());
         } else {
             log.info("当前视频快进");
-            film.setCurtime(film.getCurtime() + forward);
+            film.setCurtime(film.getCurtime() + change);
             begintime=new Date();
             begintime.setTime(System.currentTimeMillis() - film.getCurtime());
             log.info(film.getName() + "快进到了" + film.getCurtime() / 1000 + "秒" + film.getCurtime() % 1000);
@@ -275,7 +275,7 @@ public class FilmResource {
         //filmRepository.updateCurtime(id,f.getCurtime()+10);
     }
 
-    @RequestMapping("/skiptoback/{id}")
+    //@RequestMapping("/skiptoback/{id}")
     public void skipToBack(@PathVariable Long id,@RequestParam Long backward) {
         Long fid = film.getId();
         if (!id.equals(fid) || film == null) {
