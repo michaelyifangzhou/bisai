@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="film">
+            <h2><span jhiTranslate="bisaiapp5App.film.detail.title">Film</span> {{film.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bisaiapp5App.film.name">Name</span></dt>
+                <dd>
+                    <span>{{film.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="bisaiapp5App.film.url">Url</span></dt>
+                <dd>
+                    <span>{{film.url}}</span>
+                </dd>
+                <dt><span jhiTranslate="bisaiapp5App.film.length">Length</span></dt>
+                <dd>
+                    <span>{{film.length}}</span>
+                </dd>
+                <dt><span jhiTranslate="bisaiapp5App.film.playing">Playing</span></dt>
+                <dd>
+                    <span>{{film.playing}}</span>
+                </dd>
+                <dt><span jhiTranslate="bisaiapp5App.film.curtime">Curtime</span></dt>
+                <dd>
+                    <span>{{film.curtime}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/film', film.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

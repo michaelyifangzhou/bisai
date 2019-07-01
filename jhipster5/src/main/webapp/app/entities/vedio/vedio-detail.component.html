@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vedio">
+            <h2><span jhiTranslate="bisaiapp5App.vedio.detail.title">Vedio</span> {{vedio.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bisaiapp5App.vedio.name">Name</span></dt>
+                <dd>
+                    <span>{{vedio.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="bisaiapp5App.vedio.url">Url</span></dt>
+                <dd>
+                    <span>{{vedio.url}}</span>
+                </dd>
+                <dt><span jhiTranslate="bisaiapp5App.vedio.isplaying">Isplaying</span></dt>
+                <dd>
+                    <span>{{vedio.isplaying}}</span>
+                </dd>
+                <dt><span jhiTranslate="bisaiapp5App.vedio.length">Length</span></dt>
+                <dd>
+                    <span>{{vedio.length}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vedio', vedio.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

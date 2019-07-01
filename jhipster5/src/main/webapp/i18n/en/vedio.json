@@ -1,0 +1,24 @@
+{
+  "bisaiapp5App": {
+    "vedio": {
+      "home": {
+        "title": "Vedios",
+        "createLabel": "Create a new Vedio",
+        "createOrEditLabel": "Create or edit a Vedio"
+      },
+      "created": "A new Vedio is created with identifier {{ param }}",
+      "updated": "A Vedio is updated with identifier {{ param }}",
+      "deleted": "A Vedio is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Vedio {{ id }}?"
+      },
+      "detail": {
+        "title": "Vedio"
+      },
+      "name": "Name",
+      "url": "Url",
+      "isplaying": "Isplaying",
+      "length": "Length"
+    }
+  }
+}
