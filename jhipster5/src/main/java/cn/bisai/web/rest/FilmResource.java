@@ -251,8 +251,8 @@ public class FilmResource {
 
     }
 
-    @RequestMapping("/changeProgress/{id}")
-    public void changeProgress(@PathVariable Long id,@RequestParam Long change) {
+    @RequestMapping("/skiptofront/{id}")
+    public void skiptofront(@PathVariable Long id,@RequestParam Long change) {
         Long fid = film.getId();
         if (!id.equals(fid)) {
             Optional<Film> opt = filmRepository.findById(id);
@@ -275,7 +275,7 @@ public class FilmResource {
         //filmRepository.updateCurtime(id,f.getCurtime()+10);
     }
 
-    //@RequestMapping("/skiptoback/{id}")
+    @RequestMapping("/skiptoback/{id}")
     public void skipToBack(@PathVariable Long id,@RequestParam Long backward) {
         Long fid = film.getId();
         if (!id.equals(fid) || film == null) {
