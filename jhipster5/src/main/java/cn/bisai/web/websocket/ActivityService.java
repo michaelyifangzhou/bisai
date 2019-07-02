@@ -94,7 +94,7 @@ public class    ActivityService implements ApplicationListener<SessionDisconnect
         }
         return film;
     }
-   // @MessageMapping("/setstop/id")
+    @MessageMapping("/setstop/id")
     public Film setstop(@PathVariable Long id){
         Long fid=film.getId();
         if(!id.equals(fid)){
@@ -122,7 +122,7 @@ public class    ActivityService implements ApplicationListener<SessionDisconnect
 
         return film;
     }
-    //@MessageMapping("/switch/{id}")
+    @MessageMapping("/switch/{id}")
     public Film switchvedio(@PathVariable Long id){
         filmRepository.updateCurtime(film.getId(),film.getCurtime());
         filmRepository.updatePlay(film.getId(),film.isPlaying());
