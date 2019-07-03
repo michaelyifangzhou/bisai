@@ -26,7 +26,11 @@ import java.util.*;
 /**
  * REST controller for managing {@link cn.bisai.domain.Film}.
  */
+
 //这是修改版本 message符合格式
+
+//这是修改版本
+
 @RestController
 @RequestMapping("/api")
 public class FilmResource {
