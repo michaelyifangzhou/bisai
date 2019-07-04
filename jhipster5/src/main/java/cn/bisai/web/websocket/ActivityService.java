@@ -82,6 +82,7 @@ public class    ActivityService implements ApplicationListener<SessionDisconnect
         if(film.isPlaying()){
             log.info("视频已经在播放了,进度是"+film.getCurtime());
             log.info(film.getName()+"视频播放开始时间为"+begintime);
+            messagingTemplate.convertAndSend("/topic/user",film);
         }else{
             film.setPlaying(true);
             begintime=new Date();
@@ -111,11 +112,13 @@ public class    ActivityService implements ApplicationListener<SessionDisconnect
             if(film.isPlaying()){
                 film.setPlaying(false);
                 film.setCurtime(System.currentTimeMillis()-begintime.getTime());
+                messagingTemplate.convertAndSend("/topic/user",film);
                 //filmRepository.updatePlay(film.getId(),false);
                 //film.setCurtime();
                 log.info(film.getName()+"视频已经在停止了,进度是"+film.getCurtime()/1000+"秒"+film.getCurtime()%1000+"毫秒");
             }else{
                 //f.setPlaying(true);
+                messagingTemplate.convertAndSend("/topic/user",film);
                 log.info(film.getName()+"播放到"+film.getCurtime()/1000+"秒"+film.getCurtime()%1000+"毫秒");
             }
         }
@@ -201,6 +204,7 @@ public class    ActivityService implements ApplicationListener<SessionDisconnect
                 if(film.getCurtime()<=film.getLength()){
                     log.info(film.getName()+"当前播放到了"+film.getCurtime());
                     film.setCurtime(System.currentTimeMillis()-begintime.getTime());
+                    messagingTemplate.convertAndSend("/topic/user",film);
                     messagingTemplate.convertAndSend("/topic/user",
                         film.getName()+"正在进度到了"+film.getCurtime()/1000+"秒"+film.getCurtime()%1000+"毫秒");
                     //log.info(film.getName()+"正在进度到了"+film.getCurtime()/1000+"秒"+film.getCurtime()%1000+"毫秒");
@@ -208,12 +212,14 @@ public class    ActivityService implements ApplicationListener<SessionDisconnect
                     film.setPlaying(false);
                     filmRepository.updatePlay(film.getId(),false);
                     //log.info(film.getName()+"已经结束了");
+                    messagingTemplate.convertAndSend("/topic/user",film);
                     messagingTemplate.convertAndSend("/topic/user",
                         film.getName()+"已经结束了");
                 }
 
             }else{
                 //log.info(film.getName()+"播放已经暂停,当前进度是："+film.getCurtime()/1000+"秒"+film.getCurtime()%1000+"毫秒");
+                messagingTemplate.convertAndSend("/topic/user",film);
                 messagingTemplate.convertAndSend("/topic/user",
                     film.getName()+"播放已经暂停,当前进度是："+
                         film.getCurtime()/1000+"秒"+film.getCurtime()%1000+"毫秒");
