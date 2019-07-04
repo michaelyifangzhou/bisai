@@ -318,7 +318,7 @@ public class FilmResource {
         if(film==null){
             //log.info("请选择视频再来播放");
             //throw new RuntimeException("请选择视频再来播放");
-            return;
+            switchVedio(Integer.toUnsignedLong(208));
         }else{
             log.info("_" + begintime);
             if (film.isPlaying()) {

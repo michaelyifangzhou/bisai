@@ -192,8 +192,9 @@ public class    ActivityService implements ApplicationListener<SessionDisconnect
     @Scheduled(cron = "0/5 * * * * *")
     public void scheduledTask() {
         if(film==null){
-            log.info("请选择视频再来播放");
-            messagingTemplate.convertAndSend("/topic/user","选择视频再来播放");
+            log.info("播放默认视频");
+            switchvedio(Integer.toUnsignedLong(208));
+            messagingTemplate.convertAndSend("/topic/user",film);
         }else{
             log.info("_"+begintime);
             if(film.isPlaying()){
